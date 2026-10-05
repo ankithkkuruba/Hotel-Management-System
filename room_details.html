@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="details-card">
+
+        <img src="{{ url_for('static', filename='images/' + room['image']) }}">
+
+        <div>
+
+            <h2>
+                {{ room["type"] }}
+            </h2>
+
+            <p>
+                {{ room["description"] }}
+            </p>
+
+            <p>
+                <strong>Room Number:</strong>
+                {{ room["number"] }}
+            </p>
+
+            <p>
+                <strong>Capacity:</strong>
+                {{ room["capacity"] }} guests
+            </p>
+
+            <p class="price">
+                ₹{{ room["price"] }}
+                / night
+            </p>
+
+            {% if session.get("user_id") %}
+
+                <a href="{{ url_for('booking', room=room['id']) }}"
+                   class="btn">
+
+                    Book This Room
+
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('login') }}"
+                   class="btn">
+
+                    Login to Book
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

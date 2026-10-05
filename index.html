@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Welcome to Grand Horizon Hotel
+        </h1>
+
+        <p>
+            Experience comfort, luxury and exceptional hospitality.
+        </p>
+
+        <a href="{{ url_for('rooms') }}" class="btn">
+            Explore Rooms
+        </a>
+
+    </div>
+
+</section>
+
+
+<div class="container">
+
+    <h2 class="section-title">
+        Our Rooms
+    </h2>
+
+    <div class="room-grid">
+
+        {% for room in rooms %}
+
+        <div class="room-card">
+
+            <img src="{{ url_for('static', filename='images/' + room['image']) }}">
+
+            <div class="room-content">
+
+                <h3>
+                    {{ room["type"] }}
+                </h3>
+
+                <p>
+                    {{ room["description"] }}
+                </p>
+
+                <p class="price">
+                    ₹{{ room["price"] }}
+                    <span>/ night</span>
+                </p>
+
+                <a href="{{ url_for('room_details', room_id=room['id']) }}"
+                   class="btn">
+
+                    View Details
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

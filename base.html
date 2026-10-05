@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        Grand Horizon Hotel
+        {% endblock %}
+    </title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+
+    <nav>
+
+        <a href="{{ url_for('home') }}"
+           class="logo">
+
+            Grand Horizon Hotel
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('rooms') }}">
+                Rooms
+            </a>
+
+            <a href="{{ url_for('about') }}">
+                About
+            </a>
+
+            <a href="{{ url_for('contact') }}">
+                Contact
+            </a>
+
+
+            {% if session.get("user_id") %}
+
+                <a href="{{ url_for('dashboard') }}">
+                    Dashboard
+                </a>
+
+                <a href="{{ url_for('logout') }}">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('login') }}">
+                    Login
+                </a>
+
+                <a href="{{ url_for('register') }}">
+                    Register
+                </a>
+
+            {% endif %}
+
+
+            {% if session.get("role") == "admin" %}
+
+                <a href="{{ url_for('admin_dashboard') }}">
+                    Admin
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+    <!-- Page Content -->
+
+    {% block content %}
+
+    {% endblock %}
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h3>
+            Grand Horizon Hotel
+        </h3>
+
+        <p>
+            Comfort • Luxury • Hospitality
+        </p>
+
+        <p>
+            © 2026 Grand Horizon Hotel
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

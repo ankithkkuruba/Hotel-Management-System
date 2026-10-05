@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>Add New Room</h2>
+
+    {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+    <form method="POST">
+
+        <label>Room Number</label>
+
+        <input type="text"
+               name="number"
+               required>
+
+
+        <label>Room Type</label>
+
+        <input type="text"
+               name="type"
+               required>
+
+
+        <label>Price Per Night</label>
+
+        <input type="number"
+               name="price"
+               required>
+
+
+        <label>Capacity</label>
+
+        <input type="number"
+               name="capacity"
+               min="1"
+               required>
+
+
+        <label>Description</label>
+
+        <textarea name="description"
+                  rows="5"
+                  required></textarea>
+
+
+        <label>Image File Name</label>
+
+        <input type="text"
+               name="image"
+               placeholder="hotel.jpg"
+               required>
+
+
+        <button type="submit">
+            Add Room
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

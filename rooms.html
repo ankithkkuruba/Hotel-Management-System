@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2 class="section-title">
+        Our Rooms
+    </h2>
+
+    <div class="room-grid">
+
+        {% for room in rooms %}
+
+        <div class="room-card">
+
+            <img src="{{ url_for('static', filename='images/' + room['image']) }}">
+
+            <div class="room-content">
+
+                <h3>
+                    {{ room["type"] }}
+                </h3>
+
+                <p>
+                    Room {{ room["number"] }}
+                </p>
+
+                <p>
+                    {{ room["description"] }}
+                </p>
+
+                <p>
+                    Capacity:
+                    {{ room["capacity"] }} guests
+                </p>
+
+                <p class="price">
+                    ₹{{ room["price"] }}
+                    <span>/ night</span>
+                </p>
+
+                <a href="{{ url_for('room_details', room_id=room['id']) }}"
+                   class="btn">
+
+                    View Details
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

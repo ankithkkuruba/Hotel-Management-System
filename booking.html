@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>Book a Room</h2>
+
+    {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+    <form method="POST">
+
+        <label>Select Room</label>
+
+        <select name="room_id" required>
+
+            <option value="">
+                Select a Room
+            </option>
+
+            {% for room in rooms %}
+
+            <option value="{{ room['id'] }}"
+                {% if selected_room and selected_room|string == room['id']|string %}
+                    selected
+                {% endif %}>
+
+                {{ room["type"] }}
+                - ₹{{ room["price"] }} / night
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+
+        <label>Check-in Date</label>
+
+        <input type="date"
+               name="check_in"
+               required>
+
+
+        <label>Check-out Date</label>
+
+        <input type="date"
+               name="check_out"
+               required>
+
+
+        <label>Number of Guests</label>
+
+        <input type="number"
+               name="guests"
+               min="1"
+               required>
+
+
+        <button type="submit">
+            Confirm Booking
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
